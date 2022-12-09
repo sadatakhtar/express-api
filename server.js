@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const colors = require('colors')
 const logger = require("./middleware/logger");
 const connectDB = require('./config/db')
-const bodyParser = require('body-parser')
+const errorHandler = require('./middleware/error')
 
 
 
@@ -24,6 +24,7 @@ app.use(express.json())
 // Mount routers
 app.use("/api/v1/bootcamps", bootcamps);
 app.use(logger);
+app.use(errorHandler)
 
 
 const port = process.env.PORT || 5000;
